@@ -13,7 +13,6 @@ def Fib(x) :
 
 x = int( input() ) ;
 
-
 print( "Sum upto 1.."+ str(x) + " is : "+ str(Sum(x)) );
 
 print( str(x) + " ! = " + str(Fact(x)) ) ;
