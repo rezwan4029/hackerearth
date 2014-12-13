@@ -1,0 +1,23 @@
+<div class="columns">
+    <div class="widget">
+        <h6>Recent Posts</h6>
+
+
+
+        <ul class="recent_posts">
+            {% for article in articles.recentpost_section.article_set %}
+
+            <li class="clearfix">
+                <h3 class="title"><a href="#">{{ article.title }}</a></h3>
+            </li>
+
+
+            {% endfor %}
+
+        </ul>
+
+
+    </div>
+
+    <div class="clear"></div>
+</div>

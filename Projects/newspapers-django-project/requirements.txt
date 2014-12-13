@@ -1,0 +1,13 @@
+Django==1.6.1
+MySQL-python==1.2.3
+Unidecode==0.04.16
+django-facebook==6.0.1
+gnureadline==6.3.3
+ipython==2.2.0
+oauthlib==0.6.3
+pycurl==7.19.5
+python-twitter==2.1
+requests==2.4.1
+requests-oauthlib==0.4.0
+tweepy==2.3
+wsgiref==0.1.2

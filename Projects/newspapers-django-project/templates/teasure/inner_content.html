@@ -1,0 +1,56 @@
+
+{% load tags %}
+<div id="inner-content">
+    <div id="entry">
+        <div id="post-top">
+            <h3 id="post-title">{{ caption }}</h3>
+
+
+        </div>
+        <div class="entry-content">
+            {% resize_image main_article_image 650 350 as url %}
+            <img src="{{ url  }}" alt=""/>
+
+            <p>{{ description | safe }}</p>
+
+
+            <div class="social_sharing_post"><a href="#" class="twitter"> Twitter</a> <a href="#" class="facebook">Facebook</a>
+
+            </div>
+        </div>
+        <div id="related_posts" class="clearfix">
+            <h3><span>Related posts</span></h3>
+            <ul>
+                <li>
+                    <div class="thumb"><a href="#"><img
+                            src="{{ STATIC_URL }}post-images/related-posts/samsung144x105.jpg" alt=""/></a></div>
+                    <div class="heading-container">
+                        <h4 class="post_title"><a href="#">Samsung seeks ban on sale of key Apple...</a></h4>
+
+                </li>
+                <li>
+                    <div class="thumb"><a href="#"><img
+                            src="{{ STATIC_URL }}post-images/related-posts/fast-food144x105.jpg" alt=""/></a></div>
+                    <div class="heading-container">
+                        <h4 class="post_title"><a href="#">Big fast-food chains lag rivals in taste</a></h4>
+
+                </li>
+                <li>
+                    <div class="thumb"><a href="#"><img
+                            src="{{ STATIC_URL }}post-images/related-posts/sony_hacker144x105.jpg" alt=""/></a></div>
+                    <div class="heading-container">
+                        <h4 class="post_title"><a href="#">Sony hacker now on Facebook payroll</a></h4>
+
+                </li>
+                <li>
+                    <div class="thumb"><a href="#"><img
+                            src="{{ STATIC_URL }}post-images/related-posts/hybrid144x105.jpg" alt=""/></a></div>
+                    <div class="heading-container">
+                        <h4 class="post_title"><a href="#">Toyota recalls 110,000 hybrid cars on safety...</a></h4>
+
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>

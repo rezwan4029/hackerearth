@@ -1,0 +1,22 @@
+<div class="widget">
+    <h2 class="title clearfix"><span>My latest Tweets</span></h2>
+
+    <div class="widget-content">
+        <ul id="twitter_widget">
+
+            {% for s in tweets %}
+                <li>
+
+
+                    <p>{{ s.text }}
+                        <small>{{ s.created_at }}</small>
+                    </p>
+                </li>
+
+
+            {% endfor %}
+
+        </ul>
+    </div>
+    <div class="follow"><a href="#">Follow On Twitter....</a></div>
+</div>

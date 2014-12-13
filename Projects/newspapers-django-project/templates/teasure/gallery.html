@@ -1,0 +1,22 @@
+{% load tags %}
+<div id="slider-wrapper">
+    <div id="slider" class="nivoSlider">
+
+        {% for image in images %}
+            {% resize_image image.urls.large 640 350 as larges_image_url %}
+            {% resize_image image.urls.large 80 80 as thumbnail_image_url %}
+            {% if forloop.last %}
+               <img src="{{ larges_image_url }}" alt=""
+                     rel="{{ thumbnail_image_url }}"/>
+            {% else %}
+                <a href="#">
+                   <img src="{{ larges_image_url }}" alt=""
+                         rel="{{ thumbnail_image_url }}"/>
+                </a>
+            {% endif %}
+        {% endfor %}
+
+
+    </div>
+    <div class="clear"></div>
+</div>

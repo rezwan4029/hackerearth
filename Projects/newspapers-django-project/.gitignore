@@ -1,0 +1,13 @@
+*.py[co]
+*.DS_Store
+*/.DS_Store
+._*
+.project
+.pydevproject
+.python-version
+# Packages *.egg *.egg-info
+.idea .manage
+# Installer logs pip-log.txt
+pip-log.txt
+.idea
+libmysqlclient.18.dylib

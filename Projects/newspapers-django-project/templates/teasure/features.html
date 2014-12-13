@@ -1,0 +1,33 @@
+{% load tags %}
+<div id="featured">
+    <h4 id="featured-title"><span>Featured</span></h4>
+
+    <div id="featured_slider" style="position:relative; overflow:hidden;">
+           {% for article in articles.navigation_bar.article_set %}
+               {% if forloop.first or forloop.counter0|divisibleby:5 %}
+                    <div class="item">
+               {% endif %}
+               {% get_proper_image article.image_set as image %}
+               {% resize_image image.urls.large 170 140 as url %}
+                    <div class="column ">
+                        <div class="inner">
+                            <div class="image">
+                                <a href="#">
+                                    <img alt="" src="{{ url }}"/>
+                                </a>
+                            </div>
+                            <h3><a href="/article/{{ article.guid }}/{{ article.title|slugify }}">{{ article.title }}</a></h3>
+                        </div>
+                    </div>
+               {% if forloop.last or forloop.counter|divisibleby:5  %}
+                    <div class="clear"></div>
+                    </div>
+               {% endif %}
+            {% endfor %}
+    </div>
+    <div class="nav_controls">
+        <div id="featured_slider_prev"><a href="#">‹‹ Previous</a></div>
+        <div id="featured_slider_next"><a href="#">Next ››</a></div>
+    </div>
+    <div class="clear"></div>
+</div>

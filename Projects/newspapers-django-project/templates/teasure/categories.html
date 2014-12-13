@@ -1,0 +1,34 @@
+<div id="category_sort" class="clearfix">
+    <div class="column">
+        <h4><span>Technology</span></h4>
+           <ul>
+            {% for article in articles.article_first.article_set %}
+
+                    <li><a href="/article/{{ article.guid }}/{{ article.title|slugify }}">{{ article.title }}</a></li>
+
+            {% endfor %}
+           </ul>
+    </div>
+
+    <div class="column">
+        <h4><span>Hot on Web</span></h4>
+            <ul>
+            {% for article in articles.article_second.article_set %}
+
+                    <li><a href="/article/{{ article.guid }}/{{ article.title|slugify }}">{{ article.title }}</a></li>
+
+            {% endfor %}
+           </ul>
+    </div>
+    <div class="column">
+        <h4><span>Entertainment</span></h4>
+            <ul>
+            {% for article in articles.article_third.article_set %}
+
+                    <li><a href="/article/{{ article.guid }}/{{ article.title|slugify }}">{{ article.title }}</a></li>
+
+            {% endfor %}
+           </ul>
+    </div>
+
+</div>

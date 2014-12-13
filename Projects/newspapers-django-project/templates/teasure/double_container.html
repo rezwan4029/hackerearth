@@ -1,0 +1,21 @@
+{% load tags %}
+<div id="double_container">
+    <h4 class="cont-title"><span>Some more posts</span></h4>
+
+    {% for article in articles.middle_section.article_set %}
+    <div class="post_double">
+        <h4 class="post_title"><a href="/article/{{ article.guid }}/{{ article.title|slugify }}">{{ article.title }}</a> </h4>
+                            {% get_proper_image article.image_set as image %}
+                            {% resize_image image.urls.large 100 100 as url %}
+                            {% getStr article.title article.description 150 as desc %}
+        <div class="post_content clearfix">
+            <div class="thumbnail"><a href="/article/{{ article.guid }}/{{ article.title|slugify }}"><img src="{{ url }}" alt=""/></a></div>
+            <div class="summary_article">
+                <p>{{ desc }}</p>
+            </div>
+        </div>
+        <span class="read_more"><a href="/article/{{ article.guid }}/{{ article.title|slugify }}">More...</a></span></div>
+
+    {% endfor %}
+    <div class="clear"></div>
+</div>

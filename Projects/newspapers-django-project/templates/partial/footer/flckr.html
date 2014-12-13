@@ -1,0 +1,21 @@
+{% load tags %}
+
+<div class="columns">
+    <div class="widget">
+        <h6>My Flickr</h6>
+
+        <div class="flickr">
+            {% for flicker in flickers %}
+                <div
+                   {% if forloop.counter|divisibleby:4 %} class="last" {% endif %}>
+
+                   <a href="{{ flicker.url_m }}" class="fancybox" rel="gallery1"><img src="{{ flicker.url_s }}" height="40" width="40" alt="hello" /></a>
+
+                    <!--<a href= "#" ><img src= "{{ flicker.url_m }}" height = "40" width = "40" class = "thickbox" /></a>
+                    -->
+                </div>
+            {% endfor %}
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>

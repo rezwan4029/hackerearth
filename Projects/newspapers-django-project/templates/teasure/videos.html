@@ -1,0 +1,10 @@
+<div class="widget">
+    <h2 class="title clearfix"><span>Video widget</span></h2>
+    {% for video in videos %}
+        <div class="widget-content">
+            <iframe src="{{ video.media_file }}"
+                    width="252" height="142" frameborder="0"></iframe>
+        </div>
+    {% endfor %}
+</div>
+</div>

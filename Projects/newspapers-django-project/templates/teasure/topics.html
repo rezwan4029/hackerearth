@@ -1,0 +1,19 @@
+{% load tags %}
+
+<div id="tabs">
+
+    {% for topic in topics %}
+        {% getStr topic.name topic.description 30 as topic_name %}
+        <div id="tab-one" class="tab">
+            <ul>
+                <li>
+                    <div class="tab-thumb"><a class="thumb" href="#">
+                        <img width="45" height="45" alt = "" src= "{{ topic.image_url }}" /></a>
+                    </div>
+                    <h3 class="entry-title"><a class="title" href="#">{{ topic_name }}...</a></h3>
+                </li>
+            </ul>
+        </div>
+    {% endfor %}
+</div>
+</div>

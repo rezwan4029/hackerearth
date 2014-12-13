@@ -1,0 +1,40 @@
+{% load tags %}
+<div id="single_post_container">
+{#    <div class="post_single">#}
+{#        <h4 class="post_title clearfix"><a href="#">Dropbox Bug Made Accounts Accessible Without Passwords</a></h4>#}
+{##}
+{#        <div class="post_content clearfix">#}
+{#            <div class="thumbnail"><a href="#"><img src="{{ STATIC_URL }}post-images/dropbox150x150.jpg" alt=""/></a>#}
+{#            </div>#}
+{#            <div class="summary_article">#}
+{#                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean#}
+{#                    massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. </p>#}
+{##}
+{#                <p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.#}
+{#                    Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut,#}
+{#                    imperdiet a, venenatis vitae, justo. Nullam dictum felis ...</p>#}
+{#            </div>#}
+{#        </div>#}
+{#        <span class="read_more"><a href="#">More...</a></span></div>#}
+            {% for article in articles.bottom_section.article_set %}
+                {% get_proper_image article.image_set as image %}
+                            {% resize_image image.urls.large 150 150 as url %}
+                            {% getStr article.title article.description 450 as desc %}
+    <div class="post_single">
+
+        <h4 class="post_title"><a href="/article/{{ article.guid }}/{{ article.title|slugify }}">{{ article.title }}</a></h4>
+
+        <div class="post_content clearfix">
+            <div class="thumbnail"><a href="/article/{{ article.guid }}/{{ article.title|slugify }}"><img src="{{ url }}" alt=""/></a>
+            </div>
+            <div class="summary_article">
+                {{ desc }}
+
+
+            </div>
+        </div>
+        <span class="read_more"><a href="/article/{{ article.guid }}/{{ article.title|slugify }}">More...</a></span></div>
+    {% endfor %}
+    <div class="clear"></div>
+
+</div>
