@@ -29,17 +29,23 @@ ALLOWED_HOSTS = []
 # Custom Settings
 
 
+def _get_key():
+    from encrypt_decrypt.decrypt import decryption
+    return decryption()
+
 FLICKER_API_ACCESS_KEY = '34ab49d8837b7b213739b40521fe3b1c'
+
+NC_KEY = _get_key()
 
 #for the option human_readable='machine readable'
 ARTICLE_CHOICES=(
-    ('navigation_bar','Navigation Section'),
-    ('article_first','Inner Section First Column'),
-    ('article_second','Inner Section Second Column'),
-    ('article_third','Inner Section Third Column'),
-    ('middle_section','Middle Section'),
-    ('bottom_section','Bottom Section'),
-    ('recentpost_section','Footer Section'),
+    ('navigation_bar', 'Navigation Section'),
+    ('article_first', 'Inner Section First Column'),
+    ('article_second', 'Inner Section Second Column'),
+    ('article_third', 'Inner Section Third Column'),
+    ('middle_section', 'Middle Section'),
+    ('bottom_section', 'Bottom Section'),
+    ('recentpost_section', 'Footer Section'),
 )
 
 
@@ -71,7 +77,6 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'pages.middleware.PagesMiddleWare',
 
-
 )
 
 ROOT_URLCONF = 'newspapers.urls'
@@ -90,7 +95,16 @@ DATABASES = {
     }
 }
 """
-
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'newspapers',                  # Or path to database file if using sqlite3.
+        'USER': 'root',                        # Not used with sqlite3.
+        'PASSWORD': 'qweqwe',                  # Not used with sqlite3.
+        'HOST': 'localhost',                   # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '',                            # Set to empty string for default. Not used with sqlite3.
+    }
+}
 
 
 # Internationalization
@@ -115,7 +129,7 @@ STATIC_URL = '/static/'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
+    #'django.template.loaders.eggs.Loader',
     'django.template.loaders.app_directories.Loader'
 )
 

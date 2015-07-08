@@ -2,10 +2,6 @@ from django.shortcuts import render
 
 from articles.models import Article
 from newspapers.API import *
-# Create your views here.
-
-#def render(request,page=1):
-    #return Article.objects.filter(page_id=page)
 
 
 ARTICLE_FIELDS = [
@@ -34,16 +30,15 @@ def render(request, page):
         if query:
             options['query'] = query
         if to_date:
-            options['to_date'] = getDateFormat( str(to_date) )
+            options['to_date'] = getDateFormat(str(to_date))
         if from_date:
-            options['from_date'] = getDateFormat( str( from_date))
+            options['from_date'] = getDateFormat(str(from_date))
         if page_size:
             options['pagesize'] = page_size
         if has_images:
             options['has_images'] = has_images
 
         options['fields'] = ' '.join(ARTICLE_FIELDS)
-
         article_obj = NewscredApi('articles', options)
         results[article.block_choice] = article_obj.response()
 
@@ -59,21 +54,11 @@ ARTICLE_FIELDS_NEW = [
 ]
 
 
-
-
-
 def render_article(request):
-    #import pdb;pdb.set_trace()
-    #guid = request.page_params['articleId'];
-    #import pdb;pdb.set_trace();
-    options={}
-    guid=request.page_params['articleId']
+    options = dict()
+    guid = request.page_params['articleId']
     options['fields'] = ' '.join(ARTICLE_FIELDS_NEW)
-
     main_article_response = NewsCredApiArticle(guid,options).response()
-    #print main_article_response.url
-    #import pdb;pdb.set_trace()
-
     return main_article_response
 
 

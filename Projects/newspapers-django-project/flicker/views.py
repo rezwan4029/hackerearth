@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 from flicker.models import Flicker
 from newspapers.API import FlickerApi
-# Create your views here.
+
 
 def render(request, page=1):
 
@@ -11,7 +11,7 @@ def render(request, page=1):
     except IndexError:
         return False
 
-    options = {}
+    options = dict()
 
     text = flckr.text
     per_page = flckr.per_page
@@ -21,6 +21,4 @@ def render(request, page=1):
     if per_page:
         options['per_page'] = per_page
 
-    Flicker_obj = FlickerApi(options)
-
-    return Flicker_obj.response()
+    return FlickerApi(options).response()

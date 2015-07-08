@@ -2,7 +2,6 @@ from django.db import models
 from pages.models import Page
 from newspapers.settings import ARTICLE_CHOICES
 
-# Create your models here.
 
 class Article(models.Model):
     page_id = models.ForeignKey(Page)
