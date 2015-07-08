@@ -19,7 +19,7 @@ def encryption(privateInfo):
 
 """
     Ex:
-        DJANGO_SETTINGS_MODULE=newspapers.settings python -m manage shell
+        DJANGO_SETTINGS_MODULE=news.settings python -m manage shell
 
         >> from encrypt_decrypt.encrypt import encryption
         >> newscred_access_key = '?'

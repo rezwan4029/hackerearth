@@ -79,9 +79,9 @@ MIDDLEWARE_CLASSES = (
 
 )
 
-ROOT_URLCONF = 'newspapers.urls'
+ROOT_URLCONF = 'news.urls'
 
-WSGI_APPLICATION = 'newspapers.wsgi.application'
+WSGI_APPLICATION = 'news.wsgi.application'
 
 
 # Database

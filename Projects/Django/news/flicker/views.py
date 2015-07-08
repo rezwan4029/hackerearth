@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 from flicker.models import Flicker
-from newspapers.API import FlickerApi
+from news.API import FlickerApi
 
 
 def render(request, page=1):

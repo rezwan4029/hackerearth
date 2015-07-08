@@ -1,6 +1,6 @@
 from django.db import models
 from pages.models import Page
-from newspapers.settings import ARTICLE_CHOICES
+from news.settings import ARTICLE_CHOICES
 
 
 class Article(models.Model):

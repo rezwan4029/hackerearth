@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from topic.models import Topic
-from newspapers.API import NewscredApi
+from news.API import NewscredApi
 
 # Create your views here.
 
