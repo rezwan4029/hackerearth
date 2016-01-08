@@ -1,14 +1,15 @@
-from random import randint
 import json
+from random import randint
 
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import View
-from django.http import HttpResponseRedirect, HttpResponse
 
 from codetable.code.models import Code
+from codetable.code.forms import CodeForm
 from codetable.responselog.models import ResponseLog
-from codetable.hackerearth.settings import CLIENT_SECRET
 from codetable.lib.utils import get_all_supported_languages
+from codetable.hackerearth.settings import CLIENT_SECRET
 from codetable.hackerearth.parameters import RunAPIParameters
 from codetable.hackerearth.api_handlers import HackerEarthAPI
 
@@ -35,12 +36,16 @@ class CodeTableView(View):
 
 
 class CodeTableEditor(View):
+    """
+    For compiling and running code using HACKEREARTH APIs
+    """
 
     def get(self, request, code_id=None):
         template_name = 'html/codetable_editor.html'
         code = get_object_or_404(Code, id=code_id)
         data = {'text': code.code, 'inp': request.POST.get('inp',None)}
-        return render(request, template_name, {'code': code.__dict__, 'languages': get_all_supported_languages()})
+        form = CodeForm(data)
+        return render(request, template_name, {'code': code.__dict__, 'languages': get_all_supported_languages(), 'form': form})
 
     def post(self, request, code_id=None):
         try:
@@ -94,4 +99,3 @@ class CodeTableEditor(View):
             return HttpResponse(json.dumps(ret.__dict__), content_type="application/json")
         except Exception as err:
             return HttpResponse(json.dumps(err), content_type="application/json")
-
