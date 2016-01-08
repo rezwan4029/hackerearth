@@ -116,7 +116,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django_ace',
     'codetable.code',
-    
+    'codetable.responselog',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
