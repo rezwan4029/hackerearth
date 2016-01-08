@@ -52,7 +52,7 @@
 
 <form method="post" class="post_form">{% csrf_token %}
 <div class="container">
-    <div>
+    <div> <!-- Place to select programming language-->
         <label>Select Language</label>
         <select id="lang" class="browser-default" style="width: 20%">
             <option value="" disabled>Choose your Language</option>
@@ -60,15 +60,19 @@
                 <option value="{{ language }}">{{ language }}</option>
             {% endfor %}
         </select>
-        <br>
+
+        <br><!-- Save code button-->
         <a class="btn waves-effect waves-light btn-small" id="submit-btn">Save</a>
 
+        <!-- Code Editor, this div contains code-->
         <div id="editor" class="container">{{ code.code }}</div>
 
+        <!-- Input checkbox for STDIN -->
         <label for="chkInput">
             <input type="checkbox" id="chkInput"/>Use custom input for testing your code
         </label>
 
+        <!-- Textarea for giving input data of the program-->
         <div id="dvInput">
             {% if code.input_stdin %}
                 <textarea type="text" id="inp" placeholder="Write your inputs to program...">{{ code.input_stdin }}</textarea>
@@ -77,12 +81,14 @@
             {% endif %}
         </div>
 
+        <!-- Compile & Run Button-->
         <div>
             <a class="btn waves-effect waves-light btn-small" id="compile-btn">Compile and Run</a>
         </div>
 
     </div>
 
+    <!-- It holds last Modification of a particular code time -->
     <div class="nav wrapper" id="run-count-div">
         <p id="run-count-text" style="font-weight: bold">Run Count : {{ code.run_count }}</p>
         {% if code.updated_at %}
@@ -90,19 +96,22 @@
         {% endif %}
     </div>
 
+    <!-- It shows the compilation error messages, if code fails to compile -->
     <div class="nav-wrapper red" id="compile-status-detail-div" hidden>
         <b>Compilation Log</b>
-
         <div class="divider"></div>
         <p id="compile-status-text"></p>
         <br>
     </div>
 
+    <!-- This contains the resultant output the code-->
     <div id="output" hidden>
         <div>
             <br><b>Output</b>
             <div class="divider"></div>
             <div id="output-text"></div>
+
+            <!-- Table shows all the status of the code sent from API-->
             <table style="width:100%; height: 100%">
                 <tr>
                     <th class="thead">Time (sec)</th>
@@ -130,6 +139,7 @@
 <script src="{% static "js/ace.js" %}" type="text/javascript" charset="utf-8"></script>
 
 <script type="text/javascript">
+    /* This checks if the Input STDIN is checked or not*/
     $(function () {
         $("#chkInput").click(function () {
             if ($(this).is(":checked")) {
@@ -146,6 +156,8 @@
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/github");
     editor.getSession().setMode("ace/mode/python");
+
+    /* Making ajax call as a code is changed, POST request to save the data if any change happens */
     editor.getSession().on('change', function (e) {
         var current_code = editor.getValue();
         var language = document.getElementById('lang').value;
@@ -153,19 +165,25 @@
         $.ajax({
             url: "/savecode/{{ code.id }}/",
             method: "post",
-            data: {code: current_code, lang: language, input_data: current_input, csrfmiddlewaretoken: csrftoken},
+            data: {
+                code: current_code,
+                lang: language,
+                input_data: current_input,
+                csrfmiddlewaretoken: csrftoken
+            },
             error: function (xhr, error) {
-                console.debug(xhr);
-                console.debug(error);
+                //console.debug(xhr);
+                //console.debug(error);
             }
         }).done(function (content) {
-            console.log(content);
+            //console.log(content);
         });
     });
 </script>
 
 <script>
     var csrfoken = document.getElementsByName('csrfmiddlewaretoken')[0].value;
+    /* Making ajax call, POST request to save the data as save Request is made by user */
     $('#submit-btn').click(function () {
         var current_code = editor.getValue();
         var current_language = document.getElementById('lang').value;
@@ -180,18 +198,19 @@
                 csrfmiddlewaretoken: csrftoken
             },
             error: function (xhr, error) {
-                console.debug(xhr);
-                console.debug(error);
+               // console.debug(xhr);
+               // console.debug(error);
             }
         }).done(function (content) {
             Materialize.toast('Code Saved successfully!', 1000, 'rounded');
-            console.log(content);
+           // console.log(content);
         });
     });
 </script>
 
 <script>
     var csrftoken = document.getElementsByName('csrfmiddlewaretoken')[0].value;
+    /* Code run request is made, POST the current information*/
     $('#compile-btn').click(function () {
         var current_code = editor.getValue();
         var language = document.getElementById('lang').value;
@@ -200,7 +219,12 @@
         $.ajax({
             url: "/code/{{ code.id }}/",
             method: "post",
-            data: {code: current_code, lang: language, input_data: current_input, csrfmiddlewaretoken: csrftoken},
+            data: {
+                code: current_code,
+                lang: language,
+                input_data: current_input,
+                csrfmiddlewaretoken: csrftoken
+            },
             error: function (xhr, error) {
                 console.debug(xhr);
                 console.debug(error);
