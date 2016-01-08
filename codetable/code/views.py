@@ -11,7 +11,7 @@ from codetable.responselog.models import ResponseLog
 from codetable.lib.utils import get_all_supported_languages
 from codetable.hackerearth.settings import CLIENT_SECRET
 from codetable.hackerearth.parameters import RunAPIParameters
-from codetable.hackerearth.api_handlers import HackerEarthAPI
+from codetable.hackerearth.api_handlers import HackerEarthAPI, CustomHackerEarthAPIHandler
 
 
 class CodeTableView(View):
@@ -55,22 +55,25 @@ class CodeTableEditor(View):
             input_data = request.POST.get('input_data', '')
             lang = request.POST.get('lang', None)
 
-            if input_data:
-                params = RunAPIParameters(
-                    client_secret=CLIENT_SECRET, program_input=input_data,
-                    source=source, lang=lang, id=randint(0, 111111)
-                )
-            else:
+            if not input_data:
                 params = RunAPIParameters(
                     client_secret=CLIENT_SECRET,
                     source=source,
                     lang=lang,
                     id=randint(0, 111111)
                 )
-
-            api = HackerEarthAPI(params)
-            api.compile()
-            ret = api.run()
+                api = HackerEarthAPI(params)
+                api.compile()
+                ret = api.run()
+            else:
+                api = CustomHackerEarthAPIHandler(
+                    client_secret=CLIENT_SECRET,
+                    source=source,
+                    lang=lang,
+                    program_input=input_data,
+                    async=0,
+                )
+                ret = api.run()
 
             if ret.status == "CE":
                 ret.output_html = ""

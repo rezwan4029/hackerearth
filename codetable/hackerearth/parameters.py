@@ -87,7 +87,7 @@ class CompileAPIParameters(BaseAPIParameters):
 
 class RunAPIParameters(CompileAPIParameters):
     def __init__(self, client_secret, source, lang,
-                 program_input=None,
+                 input=None,
                  time_limit=settings.RUN_TIME_UPPER_LIMIT,
                  memory_limit=settings.MEMORY_UPPER_LIMIT,
                  async=0,
@@ -99,7 +99,7 @@ class RunAPIParameters(CompileAPIParameters):
                  compiled=0):
         super(RunAPIParameters, self).__init__(client_secret,
                                                source, lang)
-
+        self.input = input
         self.id = id
         self.save = save
         self.callback = callback
