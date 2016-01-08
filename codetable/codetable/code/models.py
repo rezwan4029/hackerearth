@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 
 from codetable.lib.utils import id_generator
+from codetable.hackerearth.parameters import SupportedLanguages
 from codetable.responselog.models import ResponseLog
 
 
@@ -12,6 +13,7 @@ class Code(models.Model):
     id = models.CharField(max_length=6, primary_key=True, default=id_generator, editable=False)
     code = models.TextField(default=DEFAULT_CODE)
     input_stdin = models.TextField(null=True)
+    language = models.CharField(max_length=30, default=SupportedLanguages.C)
     run_count = models.IntegerField(default=0)
     response = models.ForeignKey(ResponseLog, null=True)
     created_at = models.DateTimeField(default=timezone.now())
