@@ -1,0 +1,9 @@
+.idea
+*.py[co]
+# Packages
+*.egg
+*.egg-info
+develop-eggs
+.coverage
+.DS_Store
+*/.DS_Store
