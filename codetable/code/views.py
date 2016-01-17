@@ -45,7 +45,7 @@ class CodeTableEditor(View):
         code = get_object_or_404(Code, id=code_id)
         data = {'text': code.code, 'inp': request.POST.get('inp',None)}
         form = CodeForm(data)
-        return render(request, template_name, {'code': code.__dict__, 'languages': get_all_supported_languages(), 'form': form})
+        return render(request, template_name, {'code': code.__dict__, 'languages': get_all_supported_languages(code.language), 'form': form})
 
     @staticmethod
     def post(request, code_id=None):
